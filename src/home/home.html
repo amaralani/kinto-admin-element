@@ -1,0 +1,225 @@
+<div>
+    <el-card class="box-card">
+        <div slot="header" class="clearfix">
+            <span>Server information</span>
+        </div>
+        <el-row class="top-border has-padding-2">
+            <el-col :span="4">
+                <span class="bold-text">project_name</span>
+            </el-col>
+            <el-col :span="20">
+                {{project_name}}
+            </el-col>
+        </el-row>
+        <el-row class="top-border has-padding-2">
+            <el-col :span="4">
+                <span class="bold-text">project_version</span>
+            </el-col>
+            <el-col :span="20">
+                {{project_version}}
+            </el-col>
+        </el-row>
+        <el-row class="top-border has-padding-2">
+            <el-col :span="4">
+                <span class="bold-text">http_api_version</span>
+            </el-col>
+            <el-col :span="20">
+                {{http_api_version}}
+            </el-col>
+        </el-row>
+        <el-row class="top-border has-padding-2">
+            <el-col :span="4">
+                <span class="bold-text">project_docs</span>
+            </el-col>
+            <el-col :span="20">
+                {{project_docs}}
+            </el-col>
+        </el-row>
+        <el-row class="top-border has-padding-2">
+            <el-col :span="4">
+                <span class="bold-text">url</span>
+            </el-col>
+            <el-col :span="20">
+                {{url}}
+            </el-col>
+        </el-row>
+        <el-row class="has-padding-2">
+            <el-col :span="4">
+                <span class="bold-text">settings</span>
+            </el-col>
+            <el-col :span="20">
+                <el-row class="top-border has-padding-2">
+                    <el-col :span="4">
+                        <span class="bold-text">batch_max_requests</span>
+                    </el-col>
+                    <el-col :span="20">
+                        {{settings.batch_max_requests}}
+                    </el-col>
+                </el-row>
+                <el-row class="top-border has-padding-2">
+                    <el-col :span="4">
+                        <span class="bold-text">readonly</span>
+                    </el-col>
+                    <el-col :span="20">
+                        {{settings.readonly}}
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+
+        <el-row class="has-padding-2">
+            <el-col :span="4">
+                <span class="bold-text">user</span>
+            </el-col>
+            <el-col :span="20">
+                <el-row class="top-border has-padding-2">
+                    <el-col :span="4">
+                        <span class="bold-text">id</span>
+                    </el-col>
+                    <el-col :span="20">
+                        {{user.id}}
+                    </el-col>
+                </el-row>
+                <el-row class="top-border has-padding-2">
+                    <el-col :span="4">
+                        <span class="bold-text">principals</span>
+                    </el-col>
+                    <el-col :span="20">
+                        <el-row v-for="(principal, index) in user.principals" class="has-padding-2">
+                            <el-col :span="2">
+                                <span class="bold-text">{{index}}</span>
+                            </el-col>
+                            <el-col :span="22">
+                                <span class="bold-text">{{principal}}</span>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <el-row class="top-border has-padding-2">
+                    <el-col :span="4">
+                        <span class="bold-text">bucket</span>
+                    </el-col>
+                    <el-col :span="20">
+                        {{user.bucket}}
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+
+        <el-row class="has-padding-2">
+            <el-col :span="4">
+                <span class="bold-text">capabilities</span>
+            </el-col>
+            <el-col :span="20">
+                <el-row class="top-border has-padding-2">
+                    <el-col :span="4">
+                        <span class="bold-text">default_bucket</span>
+                    </el-col>
+                    <el-col :span="20">
+                        <el-row class=" has-padding-2">
+                            <el-col :span="4">
+                                <span class="bold-text">description</span>
+                            </el-col>
+                            <el-col :span="20">
+                                {{capabilities.default_bucket.description}}
+                            </el-col>
+                        </el-row>
+                        <el-row class=" has-padding-2">
+                            <el-col :span="4">
+                                <span class="bold-text">url</span>
+                            </el-col>
+                            <el-col :span="20">
+                                {{capabilities.default_bucket.url}}
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <el-row class="top-border has-padding-2">
+                    <el-col :span="4">
+                        <span class="bold-text">admin</span>
+                    </el-col>
+                    <el-col :span="20">
+                        <el-row class=" has-padding-2">
+                            <el-col :span="4">
+                                <span class="bold-text">description</span>
+                            </el-col>
+                            <el-col :span="20">
+                                {{capabilities.admin.description}}
+                            </el-col>
+                        </el-row>
+                        <el-row class=" has-padding-2">
+                            <el-col :span="4">
+                                <span class="bold-text">url</span>
+                            </el-col>
+                            <el-col :span="20">
+                                {{capabilities.admin.url}}
+                            </el-col>
+                        </el-row>
+                        <el-row class=" has-padding-2">
+                            <el-col :span="4">
+                                <span class="bold-text">version</span>
+                            </el-col>
+                            <el-col :span="20">
+                                {{capabilities.admin.version}}
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <el-row class="top-border has-padding-2">
+                    <el-col :span="4">
+                        <span class="bold-text">accounts</span>
+                    </el-col>
+                    <el-col :span="20">
+                        <el-row class=" has-padding-2">
+                            <el-col :span="4">
+                                <span class="bold-text">description</span>
+                            </el-col>
+                            <el-col :span="20">
+                                {{capabilities.accounts.description}}
+                            </el-col>
+                        </el-row>
+                        <el-row class=" has-padding-2">
+                            <el-col :span="4">
+                                <span class="bold-text">url</span>
+                            </el-col>
+                            <el-col :span="20">
+                                {{capabilities.accounts.url}}
+                            </el-col>
+                        </el-row>
+                        <el-row class=" has-padding-2">
+                            <el-col :span="4">
+                                <span class="bold-text">validation_enabled</span>
+                            </el-col>
+                            <el-col :span="20">
+                                {{capabilities.admin.validation_enabled}}
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+                <el-row class="top-border has-padding-2">
+                    <el-col :span="4">
+                        <span class="bold-text">permissions_endpoint</span>
+                    </el-col>
+                    <el-col :span="20">
+                        <el-row class=" has-padding-2">
+                            <el-col :span="4">
+                                <span class="bold-text">description</span>
+                            </el-col>
+                            <el-col :span="20">
+                                {{capabilities.permissions_endpoint.description}}
+                            </el-col>
+                        </el-row>
+                        <el-row class=" has-padding-2">
+                            <el-col :span="4">
+                                <span class="bold-text">url</span>
+                            </el-col>
+                            <el-col :span="20">
+                                {{capabilities.permissions_endpoint.url}}
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+    </el-card>
+</div>

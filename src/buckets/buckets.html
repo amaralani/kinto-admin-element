@@ -1,0 +1,34 @@
+<div>
+    <template>
+        <el-button type="primary" icon="el-icon-circle-plus-outline" v-if="isCollectionList"
+                   @click="goToAddCollectionView">
+            Add Collection
+        </el-button>
+        <el-button type="primary" icon="el-icon-circle-plus-outline" v-else @click="goToAddBucketView">
+            Add Bucket
+        </el-button>
+        <el-table
+                :data="tableData"
+                border
+                empty-text="No Data :("
+                style="width: 100%">
+            <el-table-column
+                    prop="id"
+                    label="Id">
+            </el-table-column>
+            <el-table-column
+                    prop="lastModified"
+                    label="Last Modified"
+                    :formatter="dateFormat">
+            </el-table-column>
+            <el-table-column
+                    label="Operations">
+                <template slot-scope="scope">
+                    <el-button type="primary" size="small" @click="show(scope.row)">
+                        Show
+                    </el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+    </template>
+</div>

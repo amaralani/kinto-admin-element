@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>element-starter</title>
+    <style>
+        .session-info-bar {
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #24292e;
+            color: #fff;
+            padding: .2em 1.15em;
+            z-index: 999;
+        }
+
+        .kinto-admin-title {
+            display: inline-block;
+            font-size: 2em;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding-left: 80px;
+            background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAABPCAYAAACu7Yr+AAAABmJLR…ybR3ajjwgWI/swPIRwpxXu7f7wxKKsyJ2u7p5aaoew/wf6foO7c64RfQAAAABJRU5ErkJggg==) no-repeat 0;
+            background-size: contain;
+        }
+
+        .user-info {
+            float: right;
+            padding-top: .3em;
+        }
+
+        .el-breadcrumb {
+            border: 1px solid #ebebeb;
+            padding: 20px 0 20px 20px;
+            margin: 3px 0;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <div>
+        <el-row :gutter="12" v-show="$store.state.isLoggedIn">
+            <el-col :span="24">
+                <div class="session-info-bar">
+                    <h1 class="kinto-admin-title">Kinto</h1>
+                    <span class="user-info">
+                    <span>
+                        Connected as <strong>account:{{$store.state.username}}</strong>
+                    </span> on <strong>{{$store.state.url}}</strong>
+
+                    <el-link href="https://kinto.readthedocs.io/" target="_blank">
+                        <el-button type="success" size="small" icon="el-icon-question">Documentation</el-button>
+                    </el-link>
+                    <el-button type="warning" size="small" icon="el-icon-user" @click="logout">Logout</el-button>
+                </span>
+                </div>
+            </el-col>
+        </el-row>
+        <el-row :gutter="12">
+            <el-col :span="8" v-show="$store.state.isLoggedIn">
+                <router-link to="/home">
+                    <el-card shadow="always">
+                        Home
+                    </el-card>
+                </router-link>
+                <el-card>
+                    <el-button type="info" size="large" icon="el-icon-plus" :span="8" @click="goToAddBucketView">
+                        Create Bucket
+                    </el-button>
+                </el-card>
+
+                <el-collapse>
+                    <el-button icon="el-icon-refresh" type="success" @click="reloadTree">Refresh tree</el-button>
+                    <el-input
+                            placeholder="Filter keyword"
+                            v-model="filterText">
+                    </el-input>
+
+                    <el-tree
+                            class="filter-tree"
+                            :props="defaultProps"
+                            :filter-node-method="filterNode"
+                            @node-click="handleNodeClick"
+                            :expand-on-click-node="false"
+                            node-key="name"
+                            lazy
+                            :load="loadNodes"
+                            empty-text="No Buckets yet :("
+                            ref="tree">
+                    </el-tree>
+                </el-collapse>
+            </el-col>
+            <el-col :span="16">
+                <el-breadcrumb separator="/" v-show="$store.state.isLoggedIn">
+                    <el-breadcrumb-item :to="{ path: '/' }">Homepage</el-breadcrumb-item>
+                    <el-breadcrumb-item :to="{path: item.route ? item.route : '' }"
+                                        v-for="item in $route.meta.breadcrumbItems">
+                        {{item.title}}
+                    </el-breadcrumb-item>
+                </el-breadcrumb>
+                <router-view :key="$route.path"></router-view>
+            </el-col>
+        </el-row>
+    </div>
+</div>
+</body>
+
+</html>

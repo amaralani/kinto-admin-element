@@ -1,0 +1,14 @@
+<div>
+    <el-row>
+        <span>Collection Name : </span>
+        <el-input
+                placeholder="Collection Name"
+                v-model="collectionName"
+                v-bind:style="{width : '180px'}"
+                clearable>
+        </el-input>
+    </el-row>
+    <el-row>
+        <el-button type="success" @click="saveCollection">Save</el-button>
+    </el-row>
+</div>

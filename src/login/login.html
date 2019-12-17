@@ -1,0 +1,25 @@
+<div class="login-card">
+    <el-col :span="12" :offset="12" class="login-card">
+        <el-card class="box-card">
+            <div slot="header" class="clearfix">
+                <span>Login</span>
+            </div>
+            <el-row class="has-margin">
+                Username:
+                <el-input placeholder="Username" v-model="username" @keyup.enter.native="login"></el-input>
+            </el-row>
+            <el-row class="has-margin">
+                Password:
+                <el-input placeholder="Password" show-password v-model="password" @keyup.enter.native="login"/>
+            </el-row>
+            <el-row class="has-margin">
+                Server URL: ( http://localhost:8888/v1/ )
+                <el-input placeholder="Kinto Server URL" v-model="url" @keyup.enter.native="login"></el-input>
+            </el-row>
+            <el-row style="">
+                <el-button type="success" @click="login">Login</el-button>
+            </el-row>
+        </el-card>
+    </el-col>
+
+</div>

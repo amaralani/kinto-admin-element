@@ -1,0 +1,14 @@
+<div>
+    <el-row>
+        <span>Bucket Name : </span>
+        <el-input
+                placeholder="Bucket Name"
+                v-model="bucketName"
+                v-bind:style="{width : '180px'}"
+                clearable>
+        </el-input>
+    </el-row>
+    <el-row>
+        <el-button type="success" @click="saveBucket">Save</el-button>
+    </el-row>
+</div>

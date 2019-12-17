@@ -1,0 +1,18 @@
+<div>
+    <el-row v-if="error">
+
+    </el-row>
+    <el-row>
+        <el-col :span="8">
+            <span>Record Data (JSON): </span>
+            <el-input
+                    placeholder='{ "key1" : "value1" , "key2" : "value2" }'
+                    v-model="recordData"
+                    clearable>
+            </el-input>
+        </el-col>
+    </el-row>
+    <el-row>
+        <el-button type="success" @click="saveRecords">Save</el-button>
+    </el-row>
+</div>

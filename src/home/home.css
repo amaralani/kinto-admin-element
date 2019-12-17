@@ -1,0 +1,9 @@
+.bold-text {
+    font-weight: bold;
+}
+.top-border {
+    border-top: 1px black solid;
+}
+.has-padding-2 {
+    padding: 5px;
+}

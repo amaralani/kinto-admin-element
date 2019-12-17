@@ -1,0 +1,23 @@
+<div>
+    <template>
+        <el-button type="primary" icon="el-icon-circle-plus-outline"
+                   @click="goToRecordView">
+            Add Record
+        </el-button>
+        <el-table
+                :data="tableData"
+                border
+                empty-text="No Data :("
+                style="width: 100%">
+            <el-table-column
+                    prop="data"
+                    label="Data">
+            </el-table-column>
+            <el-table-column
+                    prop="lastModified"
+                    label="Last Modified"
+                    :formatter="dateFormat">
+            </el-table-column>
+        </el-table>
+    </template>
+</div>
