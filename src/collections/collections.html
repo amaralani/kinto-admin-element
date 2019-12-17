@@ -18,6 +18,14 @@
                     label="Last Modified"
                     :formatter="dateFormat">
             </el-table-column>
+            <el-table-column
+                    label="Operations">
+                <template slot-scope="scope">
+                    <el-button type="danger" size="small" @click="deleteRecord(scope.row)">
+                        Delete
+                    </el-button>
+                </template>
+            </el-table-column>
         </el-table>
     </template>
 </div>

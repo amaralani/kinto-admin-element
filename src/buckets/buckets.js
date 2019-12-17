@@ -4,9 +4,9 @@ export default {
     methods: {
         loadTable() {
             if (this.isCollectionList) {
-                this.loadByUrl(this.$store.state.url+'buckets/' + this.$route.params.id + "/collections");
+                this.loadByUrl(this.$store.state.url + 'buckets/' + this.$route.params.id + "/collections");
             } else {
-                this.loadByUrl(this.$store.state.url +'buckets');
+                this.loadByUrl(this.$store.state.url + 'buckets');
             }
 
         },
@@ -16,7 +16,7 @@ export default {
             }
         },
         loadByUrl(url) {
-            this.$http.get(url, {headers: {'Authorization': 'Basic '+this.$store.getters.authorization}})
+            this.$http.get(url, {headers: {'Authorization': 'Basic ' + this.$store.getters.authorization}})
                 .then(res => {
                     for (let item in res.data.data) {
                         this.tableData.push({
@@ -41,12 +41,39 @@ export default {
                 })
             }
         },
-        goToAddCollectionView(){
+        deleteRow(row, isCollection) {
+            let url = "";
+            let item = "";
+            if (isCollection) {
+                url = this.$store.state.url + 'buckets/' + this.$route.params.id + "/collections/" + row.id;
+                item = "Collection";
+            } else {
+                url = this.$store.state.url + 'buckets/' + row.id;
+                item = "Bucket";
+            }
+            this.$http.delete(url, {headers: {'Authorization': 'Basic ' + this.$store.getters.authorization}})
+                .then(value => {
+                    this.$router.replace("/buckets", function () {
+                    }, function () {
+                    });
+                    this.$message.success(item + " removed successfully!");
+                    let root = this.$root.$refs.tree.$data.root;
+                    root.store.load({level : 0 , label : ""}, function(data){
+                        root.childNodes = [];
+                        root.doCreateChildren(data);
+                    });
+                })
+                .catch(error => {
+                    console.error(error);
+                    this.$message.error(error.body);
+                });
+        },
+        goToAddCollectionView() {
             this.$router.replace("/add-collection/" + this.$route.params.id, function () {
             }, function () {
             })
         },
-        goToAddBucketView(){
+        goToAddBucketView() {
             this.$router.replace("/add-bucket", function () {
             }, function () {
             })

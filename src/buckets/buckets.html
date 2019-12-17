@@ -27,6 +27,9 @@
                     <el-button type="primary" size="small" @click="show(scope.row)">
                         Show
                     </el-button>
+                    <el-button type="danger" size="small" @click="deleteRow(scope.row, isCollectionList)">
+                        Delete
+                    </el-button>
                 </template>
             </el-table-column>
         </el-table>
